@@ -25,11 +25,21 @@ namespace Daniel_Kasprów_lista6
     /// </summary>
     public partial class MainWindow : Window
     {
+        string connetionString;
+        SqlConnection cnn;
+        SqlCommand command;
+        String sql,sql2;
+        public int i;
 
-        static ObservableCollection<Pacjent> klient = new ObservableCollection<Pacjent>();
+        public static ObservableCollection<Pacjent> klient = new ObservableCollection<Pacjent>();
+
+        AddPacjent addPacjent = new AddPacjent();
+        ChangePacjent changePacjent = new ChangePacjent();
         public MainWindow()
         {
             InitializeComponent();
+            addPacjent = new AddPacjent(this);
+            changePacjent = new ChangePacjent(this);
             InitializeSql();
             initializeBinding();
         }
@@ -41,15 +51,11 @@ namespace Daniel_Kasprów_lista6
         }
         private void InitializeSql()
         {
-            string connetionString;
-            SqlConnection cnn;
             connetionString = @"Data Source=DESKTOP-3SJ6CNC\ASDF2019;Initial Catalog=Lista6;User ID=sa;Password=asdf";
             cnn = new SqlConnection(connetionString);
             cnn.Open();
 
-            SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
 
             sql = "Select Imie,Nazwisko,Ulica,Nr,Miasto,Kraj,Wiek,Pesel from Baza";
 
@@ -74,42 +80,89 @@ namespace Daniel_Kasprów_lista6
                // pacjent.image = (byte[])dataReader["Image"];
                 klient.Add(pacjent);
             }
-
-
-
             dataReader.Close();
             command.Dispose();
             cnn.Close();
         }
+        public  void savebaze(string ssql)
+        {
+            cnn.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            command = new SqlCommand(ssql, cnn);
+
+            adapter.InsertCommand = new SqlCommand(ssql, cnn);
+            adapter.InsertCommand.ExecuteNonQuery();
+
+            command.Dispose();
+            cnn.Close();
+        }
+
+        public void changebaze(string ssql)
+        {
+            cnn.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            command = new SqlCommand(ssql, cnn);
+
+            adapter.UpdateCommand = new SqlCommand(ssql, cnn);
+            adapter.UpdateCommand.ExecuteNonQuery();
+
+            command.Dispose();
+            cnn.Close();
+        }
+        private void refresh()
+        {
+            Persons.ItemsSource = "";
+            Persons.ItemsSource = klient;
+        }
         private void ButtonDodaj_Click(object sender, RoutedEventArgs e)
         {
-         //   addPacjent.refresh();
-         //   addPacjent.Show();
+            addPacjent.refresh();
+            addPacjent.Show();
         }
 
-        private void ButtonZapisz_Click(object sender, RoutedEventArgs e)
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-        //    savefile();
-        }
+            try
+            {
+                i = Persons.SelectedIndex;
+                cnn.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                sql2 = "Delete Baza where Pesel="+klient[i].pesel;
 
-        private void ButtonWczytaj_Click(object sender, RoutedEventArgs e)
-        {
-            //   openfile();
+                command = new SqlCommand(sql2, cnn);
+
+                adapter.DeleteCommand = new SqlCommand(sql2, cnn);
+                adapter.DeleteCommand.ExecuteNonQuery();
+
+                command.Dispose();
+                cnn.Close();
+                InitializeSql();
+                refresh();
+            }
+            catch
+            {
+                MessageBox.Show("Nie wybrano osoby");
+            }
+
         }
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-           //     i = Persons.SelectedIndex;
-          //      changePacjent.refresh();
-         //       changePacjent.Show();
+                  i = Persons.SelectedIndex;
+                  changePacjent.refresh();
+                  changePacjent.Show();
             }
             catch
             {
                 MessageBox.Show("Nie wybrano osoby");
             }
         }
+       
+
     }
    
 }

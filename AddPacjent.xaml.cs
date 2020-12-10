@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Data.SqlClient;
 
 namespace Daniel_Kasprów_lista6
 {
@@ -22,6 +25,9 @@ namespace Daniel_Kasprów_lista6
     /// </summary>
     public partial class AddPacjent : Window
     {
+        public String sqladd = "";
+
+
         Pacjent kln;
 
         MainWindow mainwindow;
@@ -56,8 +62,12 @@ namespace Daniel_Kasprów_lista6
                 }
                 if (TextPesel.Text.Length == 11)
                 {
-                   // kln = new Pacjent(TextImie.Text, TextNazwisko.Text, TextUlica.Text, TextUlica.Text, TextKraj.Text, Convert.ToInt32(TextNr.Text), Convert.ToInt32(TextWiek.Text), Convert.ToInt64(TextPesel.Text), picture);
-                   // MainWindow.klient.Add(kln);
+                    kln = new Pacjent(TextImie.Text, TextNazwisko.Text, TextUlica.Text, TextMiasto.Text, TextKraj.Text, Convert.ToInt32(TextNr.Text), Convert.ToInt32(TextWiek.Text), Convert.ToInt64(TextPesel.Text)/*, picture*/);
+                    MainWindow.klient.Add(kln);
+                    sqladd = "Insert into Baza(Imie,Nazwisko,Ulica,Miasto,Kraj,Nr,Wiek,Pesel) values('" + 
+                      TextImie.Text + "','"+ TextNazwisko.Text+"','"+ TextUlica.Text+ "','"+ TextMiasto.Text+ "','" + TextKraj.Text+"',"+ 
+                      Convert.ToInt32(TextNr.Text)+","+ Convert.ToInt32(TextWiek.Text)+","+ Convert.ToInt64(TextPesel.Text)+")";
+                    mainwindow.savebaze(sqladd);
                     this.Hide();
                 }
                 else MessageBox.Show("zla dlugosc pesela");
@@ -67,6 +77,8 @@ namespace Daniel_Kasprów_lista6
                 MessageBox.Show("nr ulicy,wiek i pesel musi byc liczba");
             }
         }
+
+       
         public void refresh()
         {
             TextImie.Text = "";

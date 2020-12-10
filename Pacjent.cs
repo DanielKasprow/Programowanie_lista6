@@ -75,9 +75,9 @@ namespace Daniel_Kasprów_lista6
             }
         }
 
-        //protected Uri(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext);
+        //protected Uri(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext);*/
 
-        public Pacjent(string nimie, string nnazwisko, string nulica, string nmiasto, string nkraj, long nnr, long nwiek, long npesel, string nobraz)
+        public Pacjent(string nimie, string nnazwisko, string nulica, string nmiasto, string nkraj, int nnr, int nwiek, long npesel/*, string nobraz*/)
         {
             imie = nimie;
             nazwisko = nnazwisko;
@@ -87,14 +87,14 @@ namespace Daniel_Kasprów_lista6
             nr = nnr;
             wiek = nwiek;
             pesel = npesel;
-            picture = nobraz;
+            //picture = nobraz;
             //uri = new Uri (nobraz,UriKind.Absolute);
 
-            obraz = new BitmapImage();
-            obraz.BeginInit();
-            obraz.UriSource = new Uri(nobraz, UriKind.Absolute);
-            obraz.EndInit();
-        }*/
+           // obraz = new BitmapImage();
+           // obraz.BeginInit();
+           // obraz.UriSource = new Uri(nobraz, UriKind.Absolute);
+           // obraz.EndInit();
+        }
         public Pacjent()
         {
         }

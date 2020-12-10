@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChangePacjent.xaml.cs">
+      <DependentUpon>ChangePacjent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CharacterLengthRule.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Registration.cs" />
     <Page Include="AddPacjent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePacjent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
