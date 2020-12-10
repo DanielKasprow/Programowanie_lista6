@@ -1,0 +1,68 @@
+﻿<Window x:Class="Daniel_Kasprów_lista6.AddPacjent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Daniel_Kasprów_lista6"
+        mc:Ignorable="d"
+                Title="AddPacjent" Height="450" Width="1000">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="LightCyan" Offset="1"/>
+            <GradientStop Color="LightGreen"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.DataContext>
+        <local:Registration/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Imie" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="0" Grid.Column="0" Name="TextImie" Height="25" Width="200" PreviewTextInput="TextStringinput"></TextBox>
+
+        <Label Grid.Row="0" Grid.Column="1" Content="Nazwisko" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="TextNazwisko" Height="25" Width="200" PreviewTextInput="TextStringinput"></TextBox>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Miasto" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="1" Grid.Column="0" Name="TextMiasto" Height="25" Width="200" PreviewTextInput="TextStringinput"></TextBox>
+
+        <Label Grid.Row="0" Grid.Column="2" Content="Ulica" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="0" Grid.Column="2" Name="TextUlica" Height="25" Width="200" PreviewTextInput="TextStringinput"></TextBox>
+
+        <Label Grid.Row="0" Grid.Column="3" Content="NR" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="0" Grid.Column="3" Name="TextNr" Height="25" Width="200" PreviewTextInput="TextIntinput"></TextBox>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Kraj" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="TextKraj" Height="25" Width="200" PreviewTextInput="TextStringinput"></TextBox>
+
+        <Label Grid.Row="1" Grid.Column="2" Content="Wiek" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+        <TextBox Grid.Row="1" Grid.Column="2" Name="TextWiek" Height="25" Width="200" PreviewTextInput="TextIntinput"></TextBox>
+
+        <Label Grid.Row="1" Grid.Column="3" Content="Pesel" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20"></Label>
+
+        <TextBox Grid.Row="1" Grid.Column="3" Name="TextPesel" Height="25" Width="200" Validation.ErrorTemplate="{StaticResource errorTemplate}">
+            <TextBox.Text>
+                <Binding Path="Peselname" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:CharacterLengthRule CharacterLength="11"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Button Grid.Row="2" Grid.Column="2" Height="50" Width="150" Click="Button_Click" Content="Dodaj" FontSize="20"></Button>
+
+    </Grid>
+</Window>

@@ -6,7 +6,61 @@
         xmlns:local="clr-namespace:Daniel_Kasprów_lista6"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="LightCyan" Offset="1"/>
+            <GradientStop Color="Red"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Name="view">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <ListView Name="Persons" Grid.ColumnSpan="4">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns>
+                        <GridViewColumn Header="Imie"
+                                DisplayMemberBinding="{Binding imie, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Nazwisko"
+                                DisplayMemberBinding="{Binding nazwisko, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Ulica"
+                                DisplayMemberBinding="{Binding ulica, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Nr Uicy"
+                                DisplayMemberBinding="{Binding nr, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Miasto"
+                                DisplayMemberBinding="{Binding miasto, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Kraj"
+                                DisplayMemberBinding="{Binding kraj, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Wiek"
+                                DisplayMemberBinding="{Binding wiek, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Pesel"
+                                DisplayMemberBinding="{Binding pesel, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Zdjecie">
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Image  Width="25" Height="25" Source="{Binding IconUrl}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Dodaj" Grid.Column="2" Grid.Row="2" FontSize="25" Name="buttonDodaj" Click="ButtonDodaj_Click"></Button>
+        <Button Content="Wczytaj" Grid.Column="1" Grid.Row="2" FontSize="25" Name="buttonwczytaj" Click="ButtonWczytaj_Click"></Button>
+        <Button Content="Zapisz" Grid.Column="0" Grid.Row="2" FontSize="25" Name="buttonZapisz" Click="ButtonZapisz_Click"></Button>
+        <Button Content="Zmien" Grid.Column="3" Grid.Row="2" FontSize="25" Name="buttonChange" Click="ButtonChange_Click"></Button>
+
     </Grid>
 </Window>

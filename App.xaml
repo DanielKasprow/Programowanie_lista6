@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:Daniel_Kasprów_lista6"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ControlTemplate x:Key="errorTemplate">
+            <Grid>
+                <AdornedElementPlaceholder/>
+                <TextBlock Text="{Binding [0].ErrorContent}" Foreground="OrangeRed"
+                               VerticalAlignment="Center" HorizontalAlignment="Right"
+                               Margin="0,25,4,0"/>
+            </Grid>
+        </ControlTemplate>
     </Application.Resources>
 </Application>
