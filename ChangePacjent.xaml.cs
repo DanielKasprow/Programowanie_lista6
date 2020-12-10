@@ -49,7 +49,7 @@ namespace Daniel_Kasprów_lista6
             if (openFileDialog.ShowDialog() == true)
             {
                 picture = openFileDialog.FileName;
-                //Zdjecie.Source = new BitmapImage(new Uri(picture));
+                Zdjecie.Source = new BitmapImage(new Uri(picture));
             }
         }
 
