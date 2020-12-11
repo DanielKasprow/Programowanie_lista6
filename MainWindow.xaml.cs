@@ -57,7 +57,7 @@ namespace Daniel_Kasprów_lista6
 
             SqlDataReader dataReader;
 
-            sql = "Select Imie,Nazwisko,Ulica,Nr,Miasto,Kraj,Wiek,Pesel from Baza";
+            sql = "Select Imie,Nazwisko,Ulica,Nr,Miasto,Kraj,Wiek,Pesel,varbyte from Base";
 
             command = new SqlCommand(sql, cnn);
             dataReader = command.ExecuteReader();
@@ -77,19 +77,21 @@ namespace Daniel_Kasprów_lista6
                 pacjent.kraj = (String)dataReader["Kraj"];
                 pacjent.wiek = (int)dataReader["Wiek"];
                 pacjent.pesel = (long)dataReader["Pesel"];
-               // pacjent.image = (byte[])dataReader["Image"];
+                pacjent.image = (byte[])dataReader["varbyte"];
                 klient.Add(pacjent);
             }
             dataReader.Close();
             command.Dispose();
             cnn.Close();
         }
-        public  void savebaze(string ssql)
+        public  void savebaze(string ssql,byte[] someByteArray)
         {
             cnn.Open();
             SqlDataAdapter adapter = new SqlDataAdapter();
 
+
             command = new SqlCommand(ssql, cnn);
+            command.Parameters.AddWithValue("data", someByteArray.Length);
 
             adapter.InsertCommand = new SqlCommand(ssql, cnn);
             adapter.InsertCommand.ExecuteNonQuery();

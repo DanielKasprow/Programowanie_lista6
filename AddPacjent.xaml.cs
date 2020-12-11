@@ -17,6 +17,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Daniel_Kasprów_lista6
 {
@@ -33,6 +34,7 @@ namespace Daniel_Kasprów_lista6
         MainWindow mainwindow;
 
         private string picture;
+        private byte[] byteImage;
         // Uri uri;
         public AddPacjent()
         {
@@ -47,7 +49,7 @@ namespace Daniel_Kasprów_lista6
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
+           // try
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 {
@@ -56,23 +58,32 @@ namespace Daniel_Kasprów_lista6
                     openFileDialog.InitialDirectory = Environment.CurrentDirectory;
                     openFileDialog.Multiselect = false;
                 }
+                string hhh = "";
+
                 if (openFileDialog.ShowDialog() == true)
                 {
                     picture = openFileDialog.FileName;
+                    byteImage = File.ReadAllBytes(picture);
+                    foreach(byte b in byteImage)
+                    {
+                        
+                        hhh = hhh + (char)b;
+                    }
+                    
                 }
                 if (TextPesel.Text.Length == 11)
                 {
-                    kln = new Pacjent(TextImie.Text, TextNazwisko.Text, TextUlica.Text, TextMiasto.Text, TextKraj.Text, Convert.ToInt32(TextNr.Text), Convert.ToInt32(TextWiek.Text), Convert.ToInt64(TextPesel.Text)/*, picture*/);
+                    kln = new Pacjent(TextImie.Text, TextNazwisko.Text, TextUlica.Text, TextMiasto.Text, TextKraj.Text, Convert.ToInt32(TextNr.Text), Convert.ToInt32(TextWiek.Text), Convert.ToInt64(TextPesel.Text), byteImage);
                     MainWindow.klient.Add(kln);
-                    sqladd = "Insert into Baza(Imie,Nazwisko,Ulica,Miasto,Kraj,Nr,Wiek,Pesel) values('" + 
+                    sqladd = "Insert into Base(Imie,Nazwisko,Ulica,Miasto,Kraj,Nr,Wiek,Pesel,Image) values('" + 
                       TextImie.Text + "','"+ TextNazwisko.Text+"','"+ TextUlica.Text+ "','"+ TextMiasto.Text+ "','" + TextKraj.Text+"',"+ 
-                      Convert.ToInt32(TextNr.Text)+","+ Convert.ToInt32(TextWiek.Text)+","+ Convert.ToInt64(TextPesel.Text)+")";
-                    mainwindow.savebaze(sqladd);
+                      Convert.ToInt32(TextNr.Text)+","+ Convert.ToInt32(TextWiek.Text)+","+ Convert.ToInt64(TextPesel.Text)+",@data)";
+                    mainwindow.savebaze(sqladd,byteImage);
                     this.Hide();
                 }
                 else MessageBox.Show("zla dlugosc pesela");
             }
-            catch
+           // catch
             {
                 MessageBox.Show("nr ulicy,wiek i pesel musi byc liczba");
             }

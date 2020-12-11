@@ -25,6 +25,7 @@ namespace Daniel_Kasprów_lista6
         Pacjent kln;
 
         MainWindow mainwindow;
+        private byte[] byteImage;
 
         public ChangePacjent()
         {
@@ -59,8 +60,7 @@ namespace Daniel_Kasprów_lista6
             {
                 if (TextPesel.Text.Length == 11)
                 {
-                    kln = new Pacjent(TextImie.Text, TextNazwisko.Text, TextUlica.Text, TextMiasto.Text, TextKraj.Text, Convert.ToInt32(TextNr.Text), Convert.ToInt32(TextWiek.Text), Convert.ToInt64(TextPesel.Text)/*, picture*/);
-                    MainWindow.klient[mainwindow.i] = (kln);
+                    kln = new Pacjent(TextImie.Text, TextNazwisko.Text, TextUlica.Text, TextMiasto.Text, TextKraj.Text, Convert.ToInt32(TextNr.Text), Convert.ToInt32(TextWiek.Text), Convert.ToInt64(TextPesel.Text), byteImage);
                     string sqladd = "Update Baza set Imie='"+ TextImie.Text +"',Nazwisko='"+ TextNazwisko.Text +"',Ulica='"+ TextMiasto.Text+"',Kraj='"
                         + TextKraj.Text+"',Nr="+ Convert.ToInt32(TextNr.Text)+",Wiek="+ Convert.ToInt32(TextWiek.Text)+",Pesel="+ Convert.ToInt64(TextPesel.Text)
                         + " where Pesel="+ MainWindow.klient[mainwindow.i].pesel;
