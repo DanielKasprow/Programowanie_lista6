@@ -36,11 +36,13 @@ namespace Daniel_Kasprów_lista6
 
         AddPacjent addPacjent = new AddPacjent();
         ChangePacjent changePacjent = new ChangePacjent();
+        FunkcjaPacjent funkcjaPacjent = new FunkcjaPacjent();
         public MainWindow()
         {
             InitializeComponent();
             addPacjent = new AddPacjent(this);
             changePacjent = new ChangePacjent(this);
+            funkcjaPacjent = new FunkcjaPacjent(this);
             InitializeSql();
             initializeBinding();
         }
@@ -152,6 +154,11 @@ namespace Daniel_Kasprów_lista6
                 MessageBox.Show("Nie wybrano osoby");
             }
 
+        }
+
+        private void ButtonFunkcja_Click(object sender, RoutedEventArgs e)
+        {
+            funkcjaPacjent.Show();
         }
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)

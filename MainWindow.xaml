@@ -17,6 +17,8 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" />
@@ -56,9 +58,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Dodaj" Grid.Column="0" Grid.Row="2" FontSize="25" Name="buttonDodaj" Click="ButtonDodaj_Click"></Button>
-        <Button Content="Usuń" Grid.Column="2" Grid.Row="2" FontSize="25" Name="buttonDelete" Click="ButtonDelete_Click"></Button>
-        <Button Content="Zmien" Grid.Column="1" Grid.Row="2" FontSize="25" Name="buttonChange" Click="ButtonChange_Click"></Button>
+        <Button Content="Funkcja" Grid.Column="0" Grid.Row="2" FontSize="25" Name="buttonFunkcja" Click="ButtonFunkcja_Click"></Button>
+
+        <Button Content="Dodaj" Grid.Column="1" Grid.Row="2" FontSize="25" Name="buttonDodaj" Click="ButtonDodaj_Click"></Button>
+        <Button Content="Usuń" Grid.Column="3" Grid.Row="2" FontSize="25" Name="buttonDelete" Click="ButtonDelete_Click"></Button>
+        <Button Content="Zmien" Grid.Column="2" Grid.Row="2" FontSize="25" Name="buttonChange" Click="ButtonChange_Click"></Button>
+        
 
     </Grid>
 </Window>

@@ -1,0 +1,41 @@
+﻿<Window x:Class="Daniel_Kasprów_lista6.FunkcjaPacjent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Daniel_Kasprów_lista6"
+        mc:Ignorable="d"
+        Title="FunkcjaPacjent" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <ListView Name="Persons" Grid.ColumnSpan="4">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns>
+                        <GridViewColumn Header="Pesel"
+                                DisplayMemberBinding="{Binding pesel, Mode=TwoWay}"/>
+                        <GridViewColumn Header="Wiek"
+                                DisplayMemberBinding="{Binding wiek, Mode=TwoWay}"/>
+                     
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Grid.Column="0" Grid.Row="2" FontSize="25" Name="Textsprwiek" PreviewTextInput="TextIntinput"></TextBox>
+        <Label Grid.Column="2" Grid.Row="2" FontSize="25" Name="Textsrwiek"></Label>
+
+        <Button Content="Wyjscie" Grid.Column="3" Grid.Row="2" FontSize="25" Name="buttonDelete" Click="ButtonWyjscie_Click"></Button>
+        <Button Content="Wyszukaj" Grid.Column="1" Grid.Row="2" FontSize="25" Name="buttonSzukaj" Click="ButtonChange_Click"></Button>
+
+    </Grid>
+</Window>

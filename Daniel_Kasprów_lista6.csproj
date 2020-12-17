@@ -59,6 +59,9 @@
       <DependentUpon>ChangePacjent.xaml</DependentUpon>
     </Compile>
     <Compile Include="CharacterLengthRule.cs" />
+    <Compile Include="FunkcjaPacjent.xaml.cs">
+      <DependentUpon>FunkcjaPacjent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Registration.cs" />
     <Page Include="AddPacjent.xaml">
@@ -66,6 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangePacjent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FunkcjaPacjent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
