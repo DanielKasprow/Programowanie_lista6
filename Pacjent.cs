@@ -46,14 +46,15 @@ namespace Daniel_Kasprów_lista6
          {
              get
              { // serialize
-                 if (obraz == null) return null;
-                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                 encoder.Frames.Add(BitmapFrame.Create(obraz));
-                 using (MemoryStream ms = new MemoryStream())
-                 {
-                     encoder.Save(ms);
-                     return ms.ToArray();
-                 }
+               //if (obraz == null) return null;
+               //JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+               //encoder.Frames.Add(BitmapFrame.Create(obraz));
+               //using (MemoryStream ms = new MemoryStream())
+               //{
+               //    encoder.Save(ms);
+               //    return ms.ToArray();
+               //}
+                return null;
              }
              set
              { // deserialize

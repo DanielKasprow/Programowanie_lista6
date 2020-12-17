@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Data;
 
 namespace Daniel_Kasprów_lista6
 {
@@ -51,13 +52,14 @@ namespace Daniel_Kasprów_lista6
         }
         private void InitializeSql()
         {
-            connetionString = @"Data Source=DESKTOP-3SJ6CNC\ASDF2019;Initial Catalog=Lista6;User ID=sa;Password=asdf";
+            //connetionString = @"Data Source=DESKTOP-3SJ6CNC\ASDF2019;Initial Catalog=Lista6;User ID=sa;Password=asdf";
+            connetionString = @"Server = localhost; Database = Music; User Id = SA; Password = yourStrong(!)Password;";
             cnn = new SqlConnection(connetionString);
             cnn.Open();
 
             SqlDataReader dataReader;
 
-            sql = "Select Imie,Nazwisko,Ulica,Nr,Miasto,Kraj,Wiek,Pesel,varbyte from Base";
+            sql = "Select Imie,Nazwisko,Ulica,Nr,Miasto,Kraj,Wiek,Pesel,Image from Base";
 
             command = new SqlCommand(sql, cnn);
             dataReader = command.ExecuteReader();
@@ -77,7 +79,8 @@ namespace Daniel_Kasprów_lista6
                 pacjent.kraj = (String)dataReader["Kraj"];
                 pacjent.wiek = (int)dataReader["Wiek"];
                 pacjent.pesel = (long)dataReader["Pesel"];
-                pacjent.image = (byte[])dataReader["varbyte"];
+                //pacjent.image = Encoding.ASCII.GetBytes((string)dataReader["Image"]);
+                pacjent.image = (byte[])dataReader["Image"];
                 klient.Add(pacjent);
             }
             dataReader.Close();
@@ -91,9 +94,10 @@ namespace Daniel_Kasprów_lista6
 
 
             command = new SqlCommand(ssql, cnn);
-            command.Parameters.AddWithValue("data", someByteArray.Length);
+            command.Parameters.Add("@data", SqlDbType.VarBinary, int.MaxValue).Value = someByteArray;
 
-            adapter.InsertCommand = new SqlCommand(ssql, cnn);
+            //adapter.InsertCommand = new SqlCommand(ssql, cnn);
+            adapter.InsertCommand = command;
             adapter.InsertCommand.ExecuteNonQuery();
 
             command.Dispose();

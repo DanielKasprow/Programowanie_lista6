@@ -92,15 +92,15 @@ namespace Daniel_Kasprów_lista6
        
         public void refresh()
         {
-            TextImie.Text = "";
-            TextNazwisko.Text = "";
-            TextUlica.Text = "";
-            TextNr.Text = "";
-            TextMiasto.Text = "";
-            TextNazwisko.Text = "";
-            TextKraj.Text = "";
-            TextWiek.Text = "";
-            TextPesel.Text = "";
+            TextImie.Text = "q";
+            TextNazwisko.Text = "q";
+            TextUlica.Text = "q";
+            TextNr.Text = "1";
+            TextMiasto.Text = "q";
+            TextNazwisko.Text = "q";
+            TextKraj.Text = "q";
+            TextWiek.Text = "1";
+            TextPesel.Text = "11111111111";
         }
         private void TextIntinput(object sender, TextCompositionEventArgs e)
         {
