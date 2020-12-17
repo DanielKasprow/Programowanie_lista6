@@ -52,8 +52,8 @@ namespace Daniel_Kasprów_lista6
         }
         private void InitializeSql()
         {
-            //connetionString = @"Data Source=DESKTOP-3SJ6CNC\ASDF2019;Initial Catalog=Lista6;User ID=sa;Password=asdf";
-            connetionString = @"Server = localhost; Database = Music; User Id = SA; Password = yourStrong(!)Password;";
+            connetionString = @"Data Source=DESKTOP-3SJ6CNC\ASDF2019;Initial Catalog=Lista6;User ID=sa;Password=asdf";
+            //connetionString = @"Server = localhost; Database = Music; User Id = SA; Password = yourStrong(!)Password;";
             cnn = new SqlConnection(connetionString);
             cnn.Open();
 
