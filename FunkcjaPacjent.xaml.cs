@@ -46,9 +46,29 @@ namespace Daniel_Kasprów_lista6
         }
         private void Initializesr()
         {
-          //  string sql = "Select avg(Wiek) from Base";
-          //  sqlquery(sql);
-          // Textsrwiek.Content = "Sr Wiek: ";
+            string connetionString;
+            SqlConnection cnn;
+            SqlCommand command;
+
+            connetionString = @"Data Source=DESKTOP-3SJ6CNC\ASDF2019;Initial Catalog=Lista6;User ID=sa;Password=asdf";
+            cnn = new SqlConnection(connetionString);
+            cnn.Open();
+
+            SqlDataReader dataReader;
+            string sql = "Select avg(Wiek) as srednia from Base";
+
+            command = new SqlCommand(sql, cnn);
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                sql = (int)dataReader["srednia"] + "";
+            }
+
+           // sqlquery(sql);
+            Textsrwiek.Content = "Sr Wiek: " + sql;
+            dataReader.Close();
+            command.Dispose();
+            cnn.Close();
 
         }
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
